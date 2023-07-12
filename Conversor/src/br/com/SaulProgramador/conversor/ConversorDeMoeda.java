@@ -16,7 +16,7 @@ public class ConversorDeMoeda extends Conversor{
 		if(tipoDeConversao == "De Reais para Dólares") {
 			return valor * 0.21;
 		} else if(tipoDeConversao == "De Reias para Euro") {
-			return valor * 0.56;
+			return valor * 0.19;
 		}
 		
 		return 0;

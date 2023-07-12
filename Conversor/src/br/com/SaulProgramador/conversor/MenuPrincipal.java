@@ -16,15 +16,45 @@ public class MenuPrincipal {
 			conversor = CriarConversao.criarConversorDeMoeda();
 		}
 		
-		double valor = Float.valueOf(JOptionPane.showInputDialog(null, "Insira um valor:"));
+		String entranda = JOptionPane.showInputDialog(null, "Insira um valor:");
+		System.out.println(entranda);
 		
-		selecionarConversao(conversor, valor);
+		if(entranda.isEmpty()) {
+			
+			JOptionPane.showMessageDialog(null, "É necessario preencher o campo de valor!");
+		} else {
+			
+			try {
+				
+				double valor = Double.valueOf(entranda);
+				selecionarConversao(conversor, valor);
+			} catch (NumberFormatException e) {
+				
+				JOptionPane.showMessageDialog(null, "Por favor, insira números!");
+			}
+		}
+		
 	}
 	
 	public void selecionarConversao(Conversor conversor, double valor) {
+		
 		String tipoDeConversao = conversor.selecionarTipoDeConversao();
 		double resultado = conversor.converter(tipoDeConversao, valor);
 		conversor.mostrarConversao(resultado);
+		reiniciar();
+	}
+	
+	public void reiniciar() {
+		
+		int resposta = JOptionPane.showConfirmDialog(null, "Deseja Continuar?", null, JOptionPane.YES_NO_OPTION);
+		
+		if(resposta == 0) {
+			
+			iniciar();
+		} else if(resposta == 1) {
+			
+			JOptionPane.showMessageDialog(null, "Programa finalizado!");
+		}
 	}
 	
 }
